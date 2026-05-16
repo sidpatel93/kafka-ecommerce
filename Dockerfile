@@ -5,11 +5,13 @@ WORKDIR /app
 ENV PYTHONUNBUFFERED=1
 ENV PYTHONDONTWRITEBYTECODE=1
 
-COPY requirements.txt .
+RUN pip install --no-cache-dir uv
 
-RUN pip install --no-cache-dir -r requirements.txt
+COPY pyproject.toml uv.lock README.md ./
+RUN uv sync --frozen --no-dev
 
 COPY app ./app
+ENV PATH="/app/.venv/bin:$PATH"
 
 # docker compose will override the cmd for the different services
-CMD ["python", "-m", "app.producers.event_generator"] 
+CMD ["python", "-m", "app.producers.event_generator"]
