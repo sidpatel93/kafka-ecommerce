@@ -44,14 +44,14 @@ services:
     command: python -m app.utils.create_topics
     restart: "no"
 
-  # event-producer:
-  #   build:
-  #     context: .
-  #     dockerfile: Dockerfile
-  #   container_name: event-producer
-  #   depends_on:
-  #     - topic-init
-  #   env_file:
-  #     - .env
-  #   command: python -m app.producers.event_generator
-  #   restart: unless-stopped
+  event-producer:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: event-producer
+    depends_on:
+      - topic-init
+    env_file:
+      - .env
+    command: python -m app.producers.event_generator
+    restart: unless-stopped
