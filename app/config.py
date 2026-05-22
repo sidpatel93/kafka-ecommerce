@@ -14,11 +14,12 @@ class Settings(BaseSettings):
 
     topic_num_partitions: int = 1
     topic_replication_factor: int = 1
+    topic_retention_ms: int = 300000
 
-    topic_init_max_retries: int = 30
+    topic_init_max_retries: int = 3
     topic_init_retry_delay_seconds: float = 2.0
 
-    producer_events_per_second: int = 10
+    producer_events_per_second: int = 1
 
     model_config = SettingsConfigDict(
         env_file=".env",

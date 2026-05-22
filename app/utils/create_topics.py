@@ -36,6 +36,7 @@ def create_missing_topics() -> int:
             topic=name,
             num_partitions=settings.topic_num_partitions,
             replication_factor=settings.topic_replication_factor,
+            config={"retention.ms": str(settings.topic_retention_ms)},
         )
         for name in settings.kafka_topics
         if name not in existing_topics
