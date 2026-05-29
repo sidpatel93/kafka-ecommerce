@@ -5,12 +5,13 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-    "confluent-kafka>=2.14.0",
+    "confluent-kafka>=2.8.2,<2.12",
     "dotenv>=0.9.9",
     "faker>=40.18.0",
     "fastapi>=0.136.1",
-    "pydantic>=2.13.4",
-    "pydantic-settings>=2.14.1",
+    "pydantic>=2.7,<2.13",
+    "pydantic-settings>=2.3,<2.12",
+    "quixstreams>=3.23.6",
     "uvicorn>=0.47.0",
 ]
 
