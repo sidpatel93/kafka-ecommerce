@@ -6,11 +6,11 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     kafka_bootstrap_servers: str = "kafka:9092"
 
-    topic_raw_events: str
-    topic_validated_events: str
-    topic_dlq: str
-    topic_analytics_1m: str
-    topic_alerts: str
+    topic_raw_events: str = "ecommerce.events.raw"
+    topic_validated_events: str = "ecommerce.events.validated"
+    topic_dlq: str = "ecommerce.events.dlq"
+    topic_analytics_1m: str = "ecommerce.analytics.1m"
+    topic_alerts: str = "ecommerce.alerts"
 
     topic_num_partitions: int = 1
     topic_replication_factor: int = 1
@@ -20,13 +20,6 @@ class Settings(BaseSettings):
     topic_init_retry_delay_seconds: float = 2.0
 
     producer_events_per_second: int = 1
-
-    model_config = SettingsConfigDict(
-        env_file=".env",
-        env_file_encoding="utf-8",
-        case_sensitive=False,
-        extra="ignore",
-    )
 
     @property
     def kafka_topics(self) -> list[str]:
